@@ -292,7 +292,7 @@ pub fn load_ttf_font_from_bytes(bytes: &[u8]) -> Result<Font, Error> {
 
     let mut font = Font::load_from_bytes(atlas.clone(), bytes)?;
 
-    font.populate_font_cache(&Font::ascii_character_list(), 15);
+    // font.populate_font_cache(&Font::ascii_character_list(), 15);
 
     // let ctx = get_context();
     // font.set_filter(ctx.default_filter_mode);
