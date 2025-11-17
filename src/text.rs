@@ -287,16 +287,17 @@ pub async fn load_ttf_font(path: &str) -> Result<Font, Error> {
 pub fn load_ttf_font_from_bytes(bytes: &[u8]) -> Result<Font, Error> {
     let atlas = Arc::new(Mutex::new(Atlas::new(
         get_quad_context(),
-        miniquad::FilterMode::Linear,
+        miniquad::FilterMode::Nearest,
     )));
 
     let mut font = Font::load_from_bytes(atlas.clone(), bytes)?;
 
     font.populate_font_cache(&Font::ascii_character_list(), 15);
 
-    let ctx = get_context();
+    // let ctx = get_context();
+    // font.set_filter(ctx.default_filter_mode);
 
-    font.set_filter(ctx.default_filter_mode);
+    font.set_filter(miniquad::FilterMode::Nearest);
 
     Ok(font)
 }
